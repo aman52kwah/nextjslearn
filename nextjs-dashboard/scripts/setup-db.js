@@ -36,16 +36,16 @@ console.log('Setting up the database...');
       `;
 
       // create invoices table
-      console.log("Creating invoices table..");
-      await sql`
-      id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-      customer_id UUID NOT NULL,
-      amount INT NOT NULL,
-      status VARCHAR(255) NOT NULL,
-      date DATE NOT NULL,
-      FOREIGN KEY (customer_id) REFERENCES customers(id)
-  );
-    `;
+  //     console.log("Creating invoices table..");
+  //     await sql`
+  //     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  //     custmer_id UUID NOT NULL,
+  //     amount INT NOT NULL,
+  //     status VARCHAR(255) NOT NULL,
+  //     date DATE NOT NULL,
+  //     FOREIGN KEY (customer_id) REFERENCES customers(id)
+  // );
+  //   `;
 
 
 
