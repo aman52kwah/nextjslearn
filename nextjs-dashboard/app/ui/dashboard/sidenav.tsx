@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import NavLinks from '../dashboard/nav-links';
+import NavLinks from './nav-links';
 import AcmeLogo from '../acme-logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 
