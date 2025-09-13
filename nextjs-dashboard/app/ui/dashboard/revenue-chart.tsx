@@ -10,11 +10,9 @@ import { Revenue } from "@/app/lib/definitions";
 // https://www.chartjs.org/
 // https://airbnb.io/visx/
 
-export default async function RevenueChart({
-  revenueList,
-}: {
-  revenueList: Revenue[];
-}) {
+export default async function RevenueChart()
+
+ {
   const revenue = await fetchRevenue();
 
   const chartHeight = 350;
