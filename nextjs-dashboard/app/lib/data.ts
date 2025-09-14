@@ -35,7 +35,7 @@ export async function fetchRevenue() {
 
 
 
-export async function fetchLatestInvoices() {
+export async function fetchLatestInvoices(): Promise<LatestInvoice[]> {
   try {
     const data = await db.query.invoices.findMany({
       columns: {
@@ -65,13 +65,21 @@ export async function fetchLatestInvoices() {
       amount: formatCurrency(Number(invoice.amount)),
       name: invoice.customer.name,
       email: invoice.customer.email,
-      image_url: invoice.customer.image_url,
+      image_url: invoice.customer.image_url ?? '', // Ensure string, not null
+      customer_id: invoice.customer_id,
+      status: invoice.status,
+      date: invoice.date, // Convert Date to ISO string
     }));
 
     return latestInvoices;
-  } catch (error: any) {
-    console.error('Database Error:', error.message, error.stack);
-    throw new Error('Failed to fetch the latest invoices.');
+  } catch (error: unknown) {
+    if(error instanceof Error){
+      console.error('Database Error:',error.message,error.stack);
+    }
+    else{
+       throw new Error('Failed to fetch the latest invoices.');
+    }
+    return []; // Return an empty array to satisfy the return type
   }
 }
 
@@ -184,7 +192,7 @@ export async function fetchInvoiceById(id: string) {
       ...invoice,
       amount: invoice.amount / 100,
     }));
-
+    console.log(invoice);
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
